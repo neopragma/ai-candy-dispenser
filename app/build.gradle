@@ -62,7 +62,8 @@ project.afterEvaluate {
 
 dependencies {
     compileOnly 'com.google.android.things:androidthings:1.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'io.kotlintest:kotlintest:2.0.7'
+    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
