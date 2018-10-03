@@ -58,3 +58,6 @@ freeline_project_description.json
 /assets
 /app/assets/imagenet_comp_graph_label_strings.txt
 /app/assets/tensorflow_inception_graph.pb
+
+# Mac OS X thumbnail files
+.DS_Store
