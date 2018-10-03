@@ -43,8 +43,6 @@ android {
     }
 }
 
-// Download model zip file into ../../assets directory
-// unzip it to demo project's own ./assets directory
 import de.undercouch.gradle.tasks.download.Download
 task downloadFile(type: Download) {
     src 'http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224_quant.tgz'
@@ -63,26 +61,22 @@ project.afterEvaluate {
 }
 
 dependencies {
+    compileOnly 'com.google.android.things:androidthings:1.0'
+    testImplementation 'junit:junit:4.12'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs'
     })
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    compileOnly 'com.google.android.things:androidthings:1.0'
     implementation 'com.google.android.things.contrib:driver-button:1.0'
     implementation 'com.google.android.things.contrib:driver-apa102:1.0'
-    implementation 'nz.geek.android.things:things-driver-char-display:0.6'
-
     implementation 'com.google.api-client:google-api-client-android:1.22.0' exclude module: 'httpclient'
-    implementation 'com.google.http-client:google-http-client-gson:1.22.0' exclude module: 'httpclient'
-
     implementation 'com.google.apis:google-api-services-vision:v1-rev22-1.22.0'
-
+    implementation 'com.google.http-client:google-http-client-gson:1.22.0' exclude module: 'httpclient'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.tensorflow:tensorflow-lite:0.1.7'
+    implementation 'nz.geek.android.things:things-driver-char-display:0.6'
 }
 
 repositories {
