@@ -40,11 +40,8 @@ class MainActivity : Activity() {
             "ANT", "ZEBRA","MONKEY",
             "PINEAPPLE", "BANANA",
             "ORANGE", "STRAWBERRY",
-            //"AIRPLANE", "LAPTOP",
-            //"COW","SHEEP",
             "BEE","LION","PENGUIN",
             "BIRD", "RABBIT", "ELEPHANT",
-            //"FOOD",
             "FLOWER")
 
     private val DEFAULT_TIMEOUT = 30*1000L
@@ -65,7 +62,6 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         mDisplay = Display(LCD_I2C_BUS)
         mButton = Button(BUTTON_PIN, Button.LogicState.PRESSED_WHEN_LOW)
@@ -79,7 +75,6 @@ class MainActivity : Activity() {
         mCameraHandler = Handler(mCameraThread.looper)
 
         mCamera = CandyCamera.getInstance()
-        //mCamera.dumpFormatInfo(this)
         mCamera.initializeCamera(this, mCameraHandler, mOnImageAvailableListener)
 
         mClassifyThread= HandlerThread("ClassifyThread")
