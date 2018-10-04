@@ -34,6 +34,7 @@ class MainActivity : Activity() {
     private lateinit var mLedStrip: LedStrip
     private val LED_STRIP_BUS = "SPI0.0"
 
+    private var mCurrentLabel = ""
     private val labelManager = LabelManager(listOf(
             "DOG","CAT","FISH",
             "CAR", "FROG","BEAR",
@@ -45,7 +46,6 @@ class MainActivity : Activity() {
             "FLOWER"))
 
     private val DEFAULT_TIMEOUT = 30*1000L
-    private var mCurrentLabel = ""
     private var mWonCurrentGame = false
     private var mRemainingMillis = 0L
     private var mTimer: CountDownTimer? = null
