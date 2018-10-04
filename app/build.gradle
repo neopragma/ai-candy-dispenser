@@ -8,10 +8,10 @@ buildscript {
         jcenter()
         mavenCentral()
     }
-    dependencies{
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.4"
-    }
+//    dependencies{
+//        classpath 'com.android.tools.build:gradle:3.0.1'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//    }
 }
 
 android {
@@ -35,6 +35,7 @@ android {
     sourceSets {
         main {
             assets.srcDirs = ['./assets']
+            test.java.srcDirs = [ 'src/test/kotlin' ]
         }
     }
 
@@ -63,7 +64,12 @@ project.afterEvaluate {
 dependencies {
     compileOnly 'com.google.android.things:androidthings:1.0'
     testImplementation 'io.kotlintest:kotlintest:2.0.7'
-    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
+    testImplementation "junit:junit:4.12"
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.3.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+//    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
+    testImplementation 'io.kotlintest:kotlintest-runner-junit4:+'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -75,11 +81,13 @@ dependencies {
     implementation 'com.google.api-client:google-api-client-android:1.22.0' exclude module: 'httpclient'
     implementation 'com.google.apis:google-api-services-vision:v1-rev22-1.22.0'
     implementation 'com.google.http-client:google-http-client-gson:1.22.0' exclude module: 'httpclient'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'org.tensorflow:tensorflow-lite:0.1.7'
     implementation 'nz.geek.android.things:things-driver-char-display:0.6'
 }
+//repositories {
+//    jcenter()
+//}
 
-repositories {
-    jcenter()
-}
+
+
