@@ -290,6 +290,15 @@ class MainActivity : Activity() {
         mCurrentLabel = newLabel
     }
 
+    internal fun raffleLabel2(labels:List<String>, currentLabel:String):String {
+        var newLabel:String
+        do {
+            val idx = (Math.random() * labels.size).toInt()
+            newLabel = labels[idx]
+        } while (newLabel == currentLabel)
+        return newLabel
+    }
+
 
     override fun onStop() {
         super.onStop()
