@@ -34,7 +34,7 @@ class MainActivity : Activity() {
     private lateinit var mLedStrip: LedStrip
     private val LED_STRIP_BUS = "SPI0.0"
 
-    private val LABELS = listOf(
+    private val labelManager = LabelManager(listOf(
             "DOG","CAT","FISH",
             "CAR", "FROG","BEAR",
             "ANT", "ZEBRA","MONKEY",
@@ -42,7 +42,7 @@ class MainActivity : Activity() {
             "ORANGE", "STRAWBERRY",
             "BEE","LION","PENGUIN",
             "BIRD", "RABBIT", "ELEPHANT",
-            "FLOWER")
+            "FLOWER"))
 
     private val DEFAULT_TIMEOUT = 30*1000L
     private var mCurrentLabel = ""
@@ -68,7 +68,7 @@ class MainActivity : Activity() {
         mButton?.setOnButtonEventListener(mButtonEventListener)
         mCandyMachine = CandyMachine(CANDY_PIN)
 
-        raffleLabel()
+        mCurrentLabel = labelManager.raffleLabel()
 
         mCameraThread = HandlerThread("CameraBackgroundThread")
         mCameraThread.start()
@@ -104,7 +104,7 @@ class MainActivity : Activity() {
             WAITING_PHOTO -> {
                 mLedStrip.setMode(LedStrip.LedMode.WAITING_PHOTO)
                 mAnnotations = mapOf()
-                raffleLabel()
+                mCurrentLabel = labelManager.raffleLabel()
                 startCountdown()
                 startAnalyzing()
             }
@@ -280,25 +280,6 @@ class MainActivity : Activity() {
         }
         mTimer?.start()
     }
-
-    private fun raffleLabel(){
-        var newLabel:String
-        do {
-            val idx = (Math.random() * LABELS.size).toInt()
-            newLabel = LABELS[idx]
-        }while (newLabel == mCurrentLabel)
-        mCurrentLabel = newLabel
-    }
-
-    internal fun raffleLabel2(labels:List<String>, currentLabel:String):String {
-        var newLabel:String
-        do {
-            val idx = (Math.random() * labels.size).toInt()
-            newLabel = labels[idx]
-        } while (newLabel == currentLabel)
-        return newLabel
-    }
-
 
     override fun onStop() {
         super.onStop()
